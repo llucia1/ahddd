@@ -1,0 +1,497 @@
+api_login_check:
+  path: /api/login_check
+
+api_refresh_token:
+  path: /api/token/refresh
+
+api_health_check:
+  resource:
+    path: ../src/Common/Presentation/Rest
+    namespace: GridCP\Common\Presentation\Rest
+  type: attribute
+
+api_auth_register:
+  resource:
+    path: ../src/Security/Authorization/Register/Presentation/Rest/
+    namespace: GridCP\Security\Authorization\Register\Presentation\Rest
+  type: attribute
+
+api_auth_login:
+  resource:
+    path: ../src/Security/Authentication/Login/Presentation/Rest/
+    namespace: GridCP\Security\Authentication\Login\Presentation\Rest
+  type: attribute
+
+api_auth_refreshToken:
+  resource:
+    path: ../src/Security/Authentication/RefreshToken/Presentation/Rest/
+    namespace: GridCP\Security\Authentication\RefreshToken\Presentation\Rest
+  type: attribute
+
+api_ip4_edti:
+  resource:
+    path: ../src/Net/Ip4/Presentation/Rest/
+    namespace: GridCP\Net\Ip4\Presentation\Rest
+  type: attribute
+
+api_ip4_create:
+  resource:
+    path: ../src/Net/Ip4/Presentation/Rest/
+    namespace: GridCP\Net\Ip4\Presentation\Rest
+  type: attribute
+
+delete_ip4:
+  resource:
+    path: ../src/Net/Ip4/Presentation/Rest/
+    namespace: GridCP\Net\Ip4\Presentation\Rest
+  type: attribute
+
+get_all_ip4_by_network_uuid:
+    resource:
+        path: ../src/Net/Ip4/Presentation/Rest/
+        namespace: GridCP\Net\Ip4\Presentation\Rest
+    type: attribute
+
+delete_all_ip4_by_network_uuid:
+    resource:
+        path: ../src/Net/Ip4/Presentation/Rest/
+        namespace: GridCP\Net\Ip4\Presentation\Rest
+    type: attribute
+
+
+api_get_ip4:
+  resource:
+    path: ../src/Net/Ip4/Presentation/Rest/
+    namespace: GridCP\Net\Ip4\Presentation\Rest
+  type: attribute
+
+api_get_ip4_by_uuid:
+    resource:
+        path: ../src/Net/Ip4/Presentation/Rest/
+        namespace: GridCP\Net\Ip4\Presentation\Rest
+    type: attribute
+
+api_ip4_network_create:
+  resource:
+    path: ../src/Net/Ip4Network/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Network\Presentation\Rest
+  type: attribute
+
+api_patch_ip4_network:
+  resource:
+    path: ../src/Net/Ip4Network/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Network\Presentation\Rest
+  type: attribute
+
+api_ip4_network_delete:
+  resource:
+    path: ../src/Net/Ip4Network/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Network\Presentation\Rest
+  type: attribute
+
+api_get_ip4_network:
+  resource:
+    path: ../src/Net/Ip4Network/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Network\Presentation\Rest
+  type: attribute
+
+api_post_create_ip4_network_float_group:
+  resource:
+    path: ../src/Net/Ip4Network/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Network\Presentation\Rest
+  type: attribute
+
+
+api_ip4_subnet_create:
+  resource:
+    path: ../src/Net/Ip4Subnet/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Subnet\Presentation\Rest
+  type: attribute
+
+
+api_delete_property_subnet:
+  resource:
+    path: ../src/Net/Ip4Subnet/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Subnet\Presentation\Rest
+  type: attribute
+
+api_get_all_subnets:
+  resource:
+    path: ../src/Net/Ip4Subnet/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Subnet\Presentation\Rest
+  type: attribute
+
+api_get_all_subnet_of_one_client:
+  resource:
+    path: ../src/Net/Ip4Subnet/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Subnet\Presentation\Rest
+  type: attribute
+
+api_pacth_property_subnet:
+  resource:
+    path: ../src/Net/Ip4Subnet/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Subnet\Presentation\Rest
+  type: attribute
+
+api_pacth_subnet:
+  resource:
+    path: ../src/Net/Ip4Subnet/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Subnet\Presentation\Rest
+  type: attribute
+
+
+api_delete_subnet:
+  resource:
+    path: ../src/Net/Ip4Subnet/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Subnet\Presentation\Rest
+  type: attribute
+
+
+
+api_ip4_tag_create:
+  resource:
+    path: ../src/Net/Ip4Tag/Presentation/Rest/
+    namespace: GridCP\Net\Ip4Tag\Presentation\Rest
+  type: attribute
+
+api_ip_float_group_create:
+  resource:
+    path: ../src/Net/Ip4FloatGroup/Presentation/Rest/
+    namespace: GridCP\Net\Ip4FloatGroup\Presentation\Rest
+  type: attribute
+
+api_node_create:
+  resource:
+    path: ../src/Node/Presentation/Rest/
+    namespace: GridCP\Node\Presentation\Rest
+  type: attribute
+
+api_get_node:
+  resource:
+    path: ../src/Node/Presentation/Rest/
+    namespace: GridCP\Node\Presentation\Rest
+  type: attribute
+
+api_get_node_by_uuid:
+    resource:
+        path: ../src/Node/Presentation/Rest/
+        namespace: GridCP\Node\Presentation\Rest
+    type: attribute
+
+api_delete_node:
+    resource:
+        path: ../src/Node/Presentation/Rest/
+        namespace: GridCP\Node\Presentation\Rest
+    type: attribute
+
+api_get_free_ips_node_by_uuid:
+    resource:
+        path: ../src/Node/Presentation/Rest/
+        namespace: GridCP\Node\Presentation\Rest
+    type: attribute
+
+api_create_device:
+  resource:
+    path: ../src/Device/Presentation/Rest/
+    namespace: GridCP\Device\Presentation\Rest
+  type: attribute
+
+api_create_plan:
+  resource:
+    path: ../src/Plan/Presentation/Rest/
+    namespace: GridCP\Plan\Presentation\Rest
+  type: attribute
+  
+api_patch_plan:
+  resource:
+    path: ../src/Plan/Presentation/Rest/
+    namespace: GridCP\Plan\Presentation\Rest
+  type: attribute
+
+
+
+api_delete_plan:
+  resource:
+    path: ../src/Plan/Presentation/Rest/
+    namespace: GridCP\Plan\Presentation\Rest
+  type: attribute
+  
+api_get_all_plan:
+  resource:
+    path: ../src/Plan/Presentation/Rest/
+    namespace: GridCP\Plan\Presentation\Rest
+  type: attribute
+
+
+
+api_get_pve_nodes:
+  resource:
+    path: ../src/Proxmox/Node/Presentation/Rest/
+    namespace: GridCP\Proxmox\Node\Presentation\Rest
+  type: attribute
+
+api_get_pve_storage:
+    resource:
+        path: ../src/Proxmox/Storage/Presentation/Rest/
+        namespace: GridCP\Proxmox\Storage\Presentation\Rest
+    type: attribute
+
+api_get_pve_vm:
+    resource:
+        path: ../src/Proxmox/Vm/Presentation/Rest/
+        namespace: GridCP\Proxmox\Vm\Presentation\Rest
+    type: attribute
+
+api_get_pve_cpu:
+    resource:
+        path: ../src/Proxmox/Cpu/Presentation/Rest/
+        namespace: GridCP\Proxmox\Cpu\Presentation\Rest
+    type: attribute
+
+api_get_pve_network:
+    resource:
+        path: ../src/Proxmox/Networks/Presentation/Rest/
+        namespace: GridCP\Proxmox\Networks\Presentation\Rest
+    type: attribute
+
+api_get_pve_version:
+    resource:
+        path: ../src/Proxmox/Version/Presentation/Rest/
+        namespace: GridCP\Proxmox\Version\Presentation\Rest
+    type: attribute
+
+api_get_user_me:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+api_add_countries_to_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+api_add_countries_of_one_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+api_add_ip4s_to_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+api_add_ip4s_of_one_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+api_get_ip4s_to_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+api_get_ip4s_of_one_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+
+api_get_counties_to_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+
+api_post_create_client:
+  resource:
+    path: ../src/Client/Presentation/Rest/
+    namespace: GridCP\Client\Presentation\Rest
+  type: attribute
+
+api_get_counties_of_one_user:
+    resource:
+        path: ../src/User/Presentation/Rest/
+        namespace: GridCP\User\Presentation\Rest
+    type: attribute
+        
+get_proxmox_timezones:
+    resource:
+        path: ../src/Proxmox/Common/Presentation/Rest/
+        namespace: GridCP\Proxmox\Common\Presentation\Rest\V1\Timezones
+    type: attribute    
+api_get_pve_Keyboard:
+    resource:
+        path: ../src/Proxmox/Common/Presentation/Rest/
+        namespace: GridCP\Proxmox\Common\Presentation\Rest
+    type: attribute
+
+
+api_get_pve_vga:
+    resource:
+        path: ../src/Proxmox/Common/Presentation/Rest/
+        namespace: GridCP\Proxmox\Common\Presentation\Rest
+    type: attribute
+
+api_post_pve_vms:
+    resource:
+        path: ../src/Proxmox/Vm/Presentation/Rest/
+        namespace: GridCP\Proxmox\Vm\Presentation\Rest
+    type: attribute
+    
+api_add_vm_to_a_ip4:
+    resource:
+        path: ../src/Proxmox/Vm/Presentation/Rest/
+        namespace: GridCP\Proxmox\Vm\Presentation\Rest
+    type: attribute
+    
+api_patch_vm_to_a_ip4:
+    resource:
+        path: ../src/Proxmox/Vm/Presentation/Rest/
+        namespace: GridCP\Proxmox\Vm\Presentation\Rest
+    type: attribute
+    
+    
+api_delete_vm_to_a_ip4:
+    resource:
+        path: ../src/Proxmox/Vm/Presentation/Rest/
+        namespace: GridCP\Proxmox\Vm\Presentation\Rest
+    type: attribute
+
+api_get_menu_authorization:
+    resource:
+        path: ../src/Security/Authorization/MenuAuthorization/Presentation/Rest
+        namespace: GridCP\Security\Authorization\MenuAuthorization\Presentation\Rest
+    type: attribute
+
+api_get_restore_password:
+  resource:
+      path: ../src/Security/Authorization/RestorePassword/Presentation/Rest
+      namespace: GridCP\Security\Authorization\RestorePassword\Presentation\Rest
+  type: attribute
+
+api_post_change_password:
+  resource:
+      path: ../src/Security/Authorization/ChangePassword/Presentation/Rest
+      namespace: GridCP\Security\Authorization\ChangePassword\Presentation\Rest
+  type: attribute
+
+api_get_all_users:
+  resource:
+    path: ../src/User/Presentation/Rest/
+    namespace: GridCP\User\Presentation\Rest
+  type: attribute
+
+api_get_configuration:
+  resource:
+    path: ../src/Configuration/Presentation/Rest/
+    namespace: GridCP\Configuration\Presentation\Rest
+  type: attribute
+
+api_get_communications_emails:
+  resource:
+    path: ../src/Communications/Emails/Presentation/Rest/
+    namespace: GridCP\Communications\Emails\Presentation\Rest
+  type: attribute
+
+get_all_os:
+  resource:
+    path: ../src/Proxmox/Os/Presentation/Rest/
+    namespace: GridCP\Proxmox\Os\Presentation\Rest
+  type: attribute
+
+path_vm_by_uuid:
+  resource:
+    path: ../src/Proxmox/Os/Presentation/Rest/
+    namespace: GridCP\Proxmox\Os\Presentation\Rest
+  type: attribute
+
+get_url_vnc:
+  resource:
+    path: ../src/Proxmox/Vnc/Presentation/Rest/V1/
+    namespace: GridCP\Proxmox\Vnc\Presentation\Rest\V1
+  type: attribute
+
+delete_Logs:
+  resource:
+    path: ../src/Logs/Presentation/Rest/V1/
+    namespace: GridCP\Logs\Presentation\Rest\V1
+  type: attribute
+
+get_all_Logs:
+  resource:
+    path: ../src/Logs/Presentation/Rest/V1/
+    namespace: GridCP\Logs\Presentation\Rest\V1
+  type: attribute
+
+get_Logs:
+  resource:
+    path: ../src/Logs/Presentation/Rest/V1/
+    namespace: GridCP\Logs\Presentation\Rest\V1
+  type: attribute
+
+patch_Logs:
+  resource:
+    path: ../src/Logs/Presentation/Rest/V1/
+    namespace: GridCP\Logs\Presentation\Rest\V1
+  type: attribute
+
+create_Logs:
+  resource:
+    path: ../src/Logs/Presentation/Rest/V1/
+    namespace: GridCP\Logs\Presentation\Rest\V1
+  type: attribute
+
+api_get_pve_current:
+    resource:
+        path: ../src/Proxmox/Current/Presentation/Rest/
+        namespace: GridCP\Proxmox\Current\Presentation\Rest
+    type: attribute
+
+api_get_pve_Reboot:
+    resource:
+        path: ../src/Proxmox/Reboot/Presentation/Rest/
+        namespace: GridCP\Proxmox\Reboot\Presentation\Rest
+    type: attribute
+
+api_get_pve_reset:
+    resource:
+        path: ../src/Proxmox/Reset/Presentation/Rest/
+        namespace: GridCP\Proxmox\Reset\Presentation\Rest
+    type: attribute
+
+get_pve_Shutdown:
+    resource:
+        path: ../src/Proxmox/Shutdown/Presentation/Rest/
+        namespace: GridCP\Proxmox\Shutdown\Presentation\Rest
+    type: attribute
+
+get_pve_Start:
+    resource:
+        path: ../src/Proxmox/Start/Presentation/Rest/
+        namespace: GridCP\Proxmox\Start\Presentation\Rest
+    type: attribute
+
+get_pve_Stop:
+    resource:
+        path: ../src/Proxmox/Stop/Presentation/Rest/
+        namespace: GridCP\Proxmox\Stop\Presentation\Rest
+    type: attribute
+
+get_pve_Resume:
+    resource:
+        path: ../src/Proxmox/Resume/Presentation/Rest/
+        namespace: GridCP\Proxmox\Resume\Presentation\Rest
+    type: attribute
+
+get_pve_Suspend:
+    resource:
+        path: ../src/Proxmox/Suspend/Presentation/Rest/
+        namespace: GridCP\Proxmox\Suspend\Presentation\Rest
+    type: attribute

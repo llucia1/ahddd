@@ -1,0 +1,5 @@
+services:
+  GridCP\Device\Application\Service\CreateDeviceService:
+    arguments:
+      $logger: '@logger'
+      $deviceRepository: '@GridCP\Device\Infrastructure\DB\MySQL\Repository\DeviceRepository'

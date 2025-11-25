@@ -1,0 +1,12 @@
+#DB Config
+#php bin/console doctrine:database:create
+#php bin/console doctrine:migrations:migrate
+
+parameters:
+  db_server_dev: mysql
+  db_server_test: sqlite
+  db_host: gridcp-mysql
+  db_port: 3306
+  db_name: gridcp
+  db_user: root
+  db_password: mysqlPass!123

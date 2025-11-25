@@ -1,0 +1,20 @@
+services:
+  GridCP\Net\Ip4Network\Application\Services\CreateIPNetwork:
+    arguments:
+      $logger: '@logger'
+      $ip4NetworkRepository: '@GridCP\Net\Ip4Network\Infrastructure\DB\MySQL\Repository\Ip4NetworkRepository'
+
+  GridCP\Net\Ip4Network\Application\Services\DeleteIPNetworkService:
+    arguments:
+      $logger: '@logger'
+      $ip4NetworkRepository: '@GridCP\Net\Ip4Network\Infrastructure\DB\MySQL\Repository\Ip4NetworkRepository'
+
+  GridCP\Net\Ip4Network\Application\Services\ListIpNetwork:
+    arguments:
+      $logger: '@logger'
+      $ip4NetworkRepository: '@GridCP\Net\Ip4Network\Infrastructure\DB\MySQL\Repository\Ip4NetworkRepository'
+
+  GridCP\Net\Ip4Network\Application\Services\ListIP4NetworkByUUIDService:
+    arguments:
+      $logger: '@logger'
+      $ip4NetworkRepository: '@GridCP\Net\Ip4Network\Infrastructure\DB\MySQL\Repository\Ip4NetworkRepository'

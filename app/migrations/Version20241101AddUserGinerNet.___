@@ -1,0 +1,68 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+use Doctrine\DBAL\ParameterType;
+use GridCP\Common\Domain\Const\Subnet\PropertyGinerNetEntity;
+
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+final class Version20241101AddUserGinerNet extends AbstractMigration
+{
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function up(Schema $schema): void
+    {
+        $uuid = PropertyGinerNetEntity::GINERNET_UUID;
+        $id = PropertyGinerNetEntity::GINERNET_ID;
+        $result = $this->connection->fetchOne('SELECT COUNT(*) FROM user WHERE uuid = :uuid', ['uuid' => $uuid], ['uuid' => ParameterType::STRING]);
+
+        if ($result == 0) {
+            $userGinerNet = PropertyGinerNetEntity::getGinerNet();
+            $this->addSql(
+                'INSERT INTO user (uuid, email, first_name, last_name, auth_uuid, created_at, updated_at) VALUES (:uuid, :email, :first_name, :last_name, NULL, NOW(), NOW())',
+                [
+                    'uuid' => $uuid,
+                    'email' => $userGinerNet->getEmail(),
+                    'first_name' => $userGinerNet->getFirstName(),
+                    'last_name' => ''
+                ],
+                [
+                    'uuid' => ParameterType::STRING,
+                    'email' => ParameterType::STRING,
+                    'first_name' => ParameterType::STRING,
+                    'last_name' => ParameterType::STRING
+                ]
+            );
+    
+    
+            $this->addSql(
+                'UPDATE user SET id = ' . $id . ' WHERE uuid = :uuid',
+                ['uuid' => $uuid],
+                ['uuid' => ParameterType::STRING]
+            );
+    
+             //  AUTO_INCREMENT
+            $maxId = $this->connection->fetchOne('SELECT MAX(id) + 1 FROM user');
+            if ($maxId) {
+                $this->addSql('ALTER TABLE user AUTO_INCREMENT = ' . $maxId);
+            }
+        }
+
+
+    
+    }
+
+    public function down(Schema $schema): void
+    {
+        $this->addSql('DELETE FROM user WHERE uuid = :uuid', ['uuid' => PropertyGinerNetEntity::GINERNET_UUID]);
+    }
+}

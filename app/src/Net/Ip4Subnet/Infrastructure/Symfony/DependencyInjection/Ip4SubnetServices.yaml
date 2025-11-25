@@ -1,0 +1,16 @@
+services:
+  GridCP\Net\Ip4Subnet\Application\Service\CreateIP4Subnet:
+    arguments:
+      $ip4SubnetRepository: '@GridCP\Net\Ip4Subnet\Infrastructure\DB\MySQL\Repository\Ip4SubnetRepository'
+
+  GridCP\Net\Ip4Subnet\Application\Service\AddPropertySubnet:
+    arguments:
+      $ip4SubnetRepository: '@GridCP\Net\Ip4Subnet\Infrastructure\DB\MySQL\Repository\Ip4SubnetRepository'
+      $propertySubnetRepository: '@GridCP\Net\Ip4Subnet\Infrastructure\DB\MySQL\Repository\Ip4SubnetOwnerRepository'
+         
+  GridCP\Net\Ip4Subnet\Common\Service\PacthPropertySubnetService:
+      arguments:
+          $entityManager: '@doctrine.orm.entity_manager'
+          $addPropertySubnetService: '@GridCP\Net\Ip4Subnet\Application\Service\AddPropertySubnet'
+          $deletePropertySubnetService: '@GridCP\Net\Ip4Subnet\Application\Service\DeletePropertySubnetService'
+          $logger: '@logger'

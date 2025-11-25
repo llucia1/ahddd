@@ -1,0 +1,172 @@
+doctrine:
+  dbal:
+    url: '%env(resolve:DATABASE_URL)%'
+    mapping_types:
+        enum: string
+
+    # IMPORTANT: You MUST configure your server version,
+    # either here or in the DATABASE_URL env var (see .env file)
+    #server_version: '15'
+
+    profiling_collect_backtrace: '%kernel.debug%'
+  orm:
+    auto_generate_proxy_classes: true
+    enable_lazy_ghost_objects: true
+    report_fields_where_declared: true
+    validate_xml_mapping: true
+    naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+    auto_mapping: true
+    dql:
+      string_functions:
+        group_concat: DoctrineExtensions\Query\Mysql\GroupConcat
+    mappings:
+      Auth:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Security/Common/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Security\Common\Infrastructure\DB\MySQL\Entity'
+        alias: Auth
+      MenuAuthorization:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Security/Authorization/MenuAuthorization/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Security\Authorization\MenuAuthorization\Infrastructure\DB\MySQL\Entity'
+        alias: menuAuthorization
+
+      User:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/User/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\User\Infrastructure\DB\MySQL\Entity'
+        alias: Auth
+      Ip4:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Net/Common/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Net\Common\Infrastructure\DB\MySQL\Entity'
+        alias: Ip4
+      Ip4Network:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Net/Common/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Net\Common\Infrastructure\DB\MySQL\Entity'
+        alias: Ip4NetworkModel
+      Ip4FloatGroup:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Net/Common/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Net\Common\Infrastructure\DB\MySQL\Entity'
+        alias: Ip4FloatGroup
+      Ip4Subnet:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Net/Ip4Subnet/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Net\Ip4Subnet\Infrastructure\DB\MySQL\Entity'
+        alias: Ip4Subnet
+      Ip4Tag:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Net/Common/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Net\Common\Infrastructure\DB\MySQL\Entity'
+        alias: Ip4Tag
+      Node:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Node/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Node\Infrastructure\DB\MySQL\Entity'
+        alias: Node
+      Device:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Device/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Device\Infrastructure\DB\MySQL\Entity'
+        alias: Device
+      Plan:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Plan/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Plan\Infrastructure\DB\MySQL\Entity'
+        alias: Plan
+      Vm:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Proxmox/Vm/Infrastructure/DB/MySQL/Persistence'
+        prefix: 'GridCP\Proxmox\Vm\Infrastructure\DB\MySQL\Persistence'
+        alias: Vm
+
+      Timezone:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Proxmox/Common/Infrastructure/Timezones/DB/MySQL/Entity'
+        prefix: 'GridCP\Proxmox\Common\Infrastructure\Timezones\DB\MySQL\Entity'
+        alias: Timezone
+      Keyboard:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Proxmox/Common/Infrastructure/Keyboard/DB/MySQL/Entity'
+        prefix: 'GridCP\Proxmox\Common\Infrastructure\Keyboard\DB\MySQL\Entity'
+        alias: Keyboard
+      Vga:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Proxmox/Common/Infrastructure/Vga/DB/MySQL/Entity'
+        prefix: 'GridCP\Proxmox\Common\Infrastructure\Vga\DB\MySQL\Entity'
+        alias: Vga
+
+      CountryEntity:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/User/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\User\Infrastructure\DB\MySQL\Entity'
+        alias: CountryEntity
+      UserCountriesEntity:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/User/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\User\Infrastructure\DB\MySQL\Entity'
+        alias: UserCountriesEntity
+      UserEntity:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/User/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\User\Infrastructure\DB\MySQL\Entity'
+        alias: UserEntity
+      ClientEntity:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Client/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Client\Infrastructure\DB\MySQL\Entity'
+        alias: ClientEntity
+      EmailTemplateEntity:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Communications/Emails/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Communications\Emails\Infrastructure\DB\MySQL\Entity'
+        alias: EmailTemplateEntity
+      ConfigurationCommunicationsEntity:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Configuration/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Configuration\Infrastructure\DB\MySQL\Entity'
+        alias: ConfigurationCommunicationsEntity
+
+      So:
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Proxmox/Os/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Proxmox\Os\Infrastructure\DB\MySQL\Entity'
+        alias: So
+
+      SettingsVnc:
+        is_bundle: false
+        type: attribute
+        dir: '%kernel.project_dir%/src/Settings/Infrastructure/DB/MySQL/Entity'
+        prefix: 'GridCP\Settings\Infrastructure\DB\MySQL\Entity'
+        alias: SettingsVnc
+
+
+
+
+when@test:
+  doctrine:
+    dbal:
+      # "TEST_TOKEN" is typically set by ParaTest
+      dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+
+when@prod:
+  doctrine:
+    orm:
+      auto_generate_proxy_classes: false
+      proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
+      query_cache_driver:
+        type: pool
+        pool: doctrine.system_cache_pool
+      result_cache_driver:
+        type: pool
+        pool: doctrine.result_cache_pool
+
+  framework:
+    cache:
+      pools:
+        doctrine.result_cache_pool:
+          adapter: cache.app
+        doctrine.system_cache_pool:
+          adapter: cache.system

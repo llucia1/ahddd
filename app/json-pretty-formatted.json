@@ -1,0 +1,320 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "GridCP API",
+        "description": "GridCP API Documentation",
+        "version": "1.0.0 - Alpha"
+    },
+    "paths": {
+        "\/api\/doc.json": {
+            "get": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/api\/test": {
+            "get": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "options": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "head": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "patch": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "trace": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/api\/healthcheck": {
+            "get": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/api\/auth\/register": {
+            "post": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/api\/vx\/ip4": {
+            "post": {
+                "tags": [
+                    "IP4"
+                ],
+                "summary": "Create a new IP4 Record",
+                "description": "Create a new IP4 record with the provided data.",
+                "operationId": "post_api_ip4_create",
+                "parameters": [
+                    {
+                        "name": "ip",
+                        "in": "query",
+                        "description": "The IP address.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "192.168.1.1"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "The user ID.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "networkId",
+                        "in": "query",
+                        "description": "The network ID.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    },
+                    {
+                        "name": "subnetId",
+                        "in": "query",
+                        "description": "The range ID.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 3
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Provide the IP4 data to create a new IP4 record.",
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/CreateIP4Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "IP4 record created successfully.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "uuid": {
+                                            "description": "The UUID of the created IP4 record.",
+                                            "type": "string",
+                                            "example": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input data.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Error message describing the validation issue.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Error message describing the internal server error.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "\/api\/vx\/ip4_network": {
+            "get": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/api\/vx\/ip4_network\/{uuid}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "\/api\/vx\/ip4_subnet": {
+            "post": {
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateIP4Request": {
+                "title": "Create IP4 Request",
+                "description": "Request schema for creating a new IP4 record.",
+                "required": [
+                    "ip",
+                    "userId",
+                    "networkId",
+                    "subnetId"
+                ],
+                "properties": {
+                    "validator": {
+                        "$ref": "#\/components\/schemas\/ValidatorInterface"
+                    },
+                    "ip": {
+                        "description": "The IP address in IPv4 format.",
+                        "type": "string",
+                        "format": "ipv4",
+                        "example": "192.168.1.1"
+                    },
+                    "userId": {
+                        "description": "The user ID of the owner of this IP address.",
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "example": 1
+                    },
+                    "networkId": {
+                        "description": "The network ID to which this IP address belongs.",
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "example": 2
+                    },
+                    "subnetId": {
+                        "description": "The Subnet ID within the network where this IP address resides.",
+                        "type": "integer",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "example": 3
+                    }
+                },
+                "type": "object"
+            },
+            "ValidatorInterface": {
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "type": "http",
+                "bearerFormat": "JWE",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "Bearer": []
+        }
+    ]
+}

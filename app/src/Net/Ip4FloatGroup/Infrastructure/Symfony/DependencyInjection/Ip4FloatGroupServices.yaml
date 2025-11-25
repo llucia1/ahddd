@@ -1,0 +1,8 @@
+services:
+  GridCP\Net\Ip4FloatGroup\Application\Service\FloatGroupByUUIDService:
+    arguments:
+      $ipFloatGroupsRepository: '@GridCP\Net\Ip4FloatGroup\Infrastructure\DB\MySQL\Repository\IpFloatGroupsRepository'
+
+  GridCP\Net\Ip4FloatGroup\Application\Service\ListFloatGroup:
+    arguments:
+      $floatGroupRepository: '@GridCP\Net\Ip4FloatGroup\Infrastructure\DB\MySQL\Repository\IpFloatGroupsRepository'

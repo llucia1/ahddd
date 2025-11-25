@@ -1,0 +1,143 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Import parameters from config.yaml
+imports:
+  - { resource: '../config.yaml' }
+  - { resource: '../src/Communications/Common/Infrastructure/Symfony/DependencyInjection/CommunicationsServices.yaml'}
+  - { resource: '../src/Security/Common/Infrastructure/Symfony/DependencyInjection/SecurityServices.yaml'}
+  - { resource: '../src/Common/Infrastructure/Symfony/DependencyInjection/CommonServices.yaml'}
+  - { resource: '../src/Client/Infrastructure/Symfony/DependencyInjection/ClientServices.yaml'}
+  - { resource: '../src/User/Infrastructure/Symfony/DependencyInjection/UserServices.yaml'}
+  - { resource: '../src/Proxmox/Vm/Infrastructure/Symfony/DependencyInjection/VmServices.yaml'}
+  - { resource: '../src/Node/Infrastructure/Symfony/DependencyInjection/NodeServices.yaml'}
+  - { resource: '../src/Net/Ip4Subnet/Infrastructure/Symfony/DependencyInjection/Ip4SubnetServices.yaml'}
+  - { resource: '../src/Net/Ip4Network/Infrastructure/Symfony/DependencyInjection/Ip4NetworkServices.yaml'}
+  - { resource: '../src/Net/Ip4FloatGroup/Infrastructure/Symfony/DependencyInjection/Ip4FloatGroupServices.yaml'}
+  - { resource: '../src/Net/Ip4/Infrastructure/Symfony/DependencyInjection/Ip4Services.yaml'}
+  - { resource: '../src/Plan/Infrastructure/Symfony/DependencyInjection/PlanServices.yaml'}
+  - { resource: '../src/Device/Infrastructure/Symfony/DependencyInjection/DeviceServices.yaml'}
+  - { resource: '../src/Proxmox/Os/Infrastructure/Symfony/DependencyInjection/OsServices.yaml'}
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  GridCP\Common\Infrastructure\Jwt\UserServiceJwt:
+    arguments: ['@security.token_storage']
+
+  GridCP\Common\Infrastructure\Request\HeaderListenerFilter:
+    tags:
+      - { name: 'kernel.event_subscriber' }
+
+  GridCP\Common\Infrastructure\OpenSSL\OpenSSLService:
+    arguments:
+      $params: '@params'
+
+
+
+
+
+
+  GridCP\Proxmox\Common\Infrastructure\ProxmoxClientService:
+    arguments:
+      $logger: '@logger'
+ 
+  GridCP\Proxmox\Common\Application\Timezones\Service\GetTimezonesService:
+    arguments:
+      $timezonesRepository: '@GridCP\Proxmox\Common\Infrastructure\Timezones\DB\MySQL\Entity\TimezoneEntity'
+
+
+  GridCP\Proxmox\Storage\Application\Service\GetProxmoxStorageService:
+    arguments:
+      $logger: '@logger'
+      $nodeRepository: '@GridCP\Node\Infrastructure\DB\MySQL\Repository\NodeRepository'
+
+      
+  GridCP\Proxmox\Common\Application\Keyboard\Service\GetKeyboardService:
+    arguments:
+      $keyboardRepository: '@GridCP\Proxmox\Common\Infrastructure\Keyboard\DB\MySQL\Repository\KeyboardRepository'
+
+  GridCP\Proxmox\Common\Application\Vga\Service\GetVgaService:
+    arguments:
+      $vgaRepository: '@GridCP\Proxmox\Common\Infrastructure\Vga\DB\MySQL\Repository\VgaRepository'
+
+ 
+
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  GridCP\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/Kernel.php'
+
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+
+  # MonoLogProccessor to obtain CorrelationID
+  GridCP\Common\Infrastructure\Logger\MonoLogProcessor:
+    tags:
+      - { name: monolog.processor }
+
+  #Confgur tags
+  _instanceof:
+    GridCP\Common\Domain\Bus\EventSource\DomainEventSubscriber:
+      tags: ['gridcp.domain_event_subscriber']
+
+    GridCP\Common\Domain\Bus\Command\CommandHandler:
+      tags: ['gridcp.command_handler']
+
+    GridCP\Common\Domain\Bus\Query\QueryHandler:
+      tags: ['gridcp.query_handler']
+
+  # Configure Service EventSource
+  GridCP\Common\Infrastructure\Bus\EventSource\InMemory\InMemorySymfonyEventBus:
+    arguments: [ !tagged gridcp.domain_event_subscriber ]
+    lazy: true
+
+  # Configure RabbitMQ
+  GridCP\Common\Infrastructure\Bus\EventSource\RabbitMQ\RabbitMQConnection:
+    arguments:
+      - host: '%env(RABBITMQ_HOST)%'
+        port: '%env(RABBITMQ_PORT)%'
+        vhost: '%env(RABBITMQ_MOOC_VHOST)%'
+        login: '%env(RABBITMQ_LOGIN)%'
+        password: '%env(RABBITMQ_PASSWORD)%'
+        read_timeout: 2
+        write_timeout: 2
+        connect_timeout: 5
+
+  GridCP\Common\Infrastructure\Bus\EventSource\RabbitMQ\RabbitMQEventBus:
+    arguments: ['@GridCP\Common\Infrastructure\Bus\EventSource\RabbitMQ\RabbitMQConnection', '%env(RABBITMQ_EXCHANGE)%']
+
+  # Configure Service CQRS
+  GridCP\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+    arguments: [!tagged gridcp.command_handler]
+    lazy: true
+
+  GridCP\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+    arguments: [!tagged_iterator gridcp.query_handler]
+    lazy: true
+
+  #Selector Bus.
+  GridCP\Common\Domain\Bus\EventSource\EventBus: '@GridCP\Common\Infrastructure\Bus\EventSource\InMemory\InMemorySymfonyEventBus'
+
+  #Twig Email.
+  Twig\Extension\StringLoaderExtension:
+
+  GridCP\Communications\Emails\Infrastructure\Twig\DatabaseTwigLoader:
+    arguments:
+      $emailTemplateRepository: '@GridCP\Communications\Emails\Infrastructure\DB\MySQL\Repository\EmailTemplateRepository'
+
+  #Fixtures.
+  Fixtures\:
+    resource: '../fixtures'
+
+parameters:
+  GridCP.CIPHERING: "%env(CIPHERING)%"
+  GridCP.PII_KEY: "%env(PII_KEY)%"

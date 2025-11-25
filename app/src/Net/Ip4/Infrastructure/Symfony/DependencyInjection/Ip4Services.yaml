@@ -1,0 +1,51 @@
+services:
+  GridCP\Net\Ip4\Application\Service\CreateIP4:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+      $logger: '@logger'
+
+  GridCP\Net\Ip4\Application\Service\EditIP4service:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+      $logger: '@logger'
+
+  GridCP\Net\Ip4\Application\Service\ListIp4Service:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+
+  GridCP\Net\Ip4\Application\Service\ListIp4ByUuidService:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+
+  GridCP\Net\Ip4\Common\Service\DeleteIP4Common:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+      $logger: '@logger'
+      $ip4SubnetRepository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\ServiceEntityRepository'
+
+  GridCP\Net\Ip4\Application\Service\DeleteIp4:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+      $logger: '@logger'
+
+  GridCP\Net\Ip4\Application\Service\DeleteAllIp4OfNetwork:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+      $logger: '@logger'
+      $queryBus: '@queryBus'
+      
+  GridCP\Net\Ip4\Application\Service\ListIp4ByNetworkUuid:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+
+  GridCP\Net\Ip4\Application\Cqrs\Handlers\getIp4sNotExitsHandler:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+
+  GridCP\Net\Ip4\Application\Cqrs\Handlers\GetIp4EntityHandler:
+    arguments:
+      $ip4Repository: '@GridCP\Net\Ip4\Infrastructure\DB\MySQL\Repository\Ip4Repository'
+
+  GridCP\Net\Ip4Tag\Application\Service\CreateIP4Tag:
+    arguments:
+      $ip4TagRepository: '@GridCP\Net\Ip4Tag\Infrastructure\DB\MySQL\Repository\Ip4TagRepository'
